@@ -61,8 +61,8 @@
    
     <i class="fa-solid fa-user-secret" style="color: #8fa0bc;"></i>
     <i class="fa-solid fa-user-secret"></i>
-</template>
 
+</template>
 
 <script setup>
 import { computed, reactive, ref } from 'vue'
