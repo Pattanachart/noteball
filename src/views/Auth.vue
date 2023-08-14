@@ -28,6 +28,7 @@
                     <div class="field">
                         <p class="control has-icons-left has-icons-right">
                             <input v-model="credential.email" class="input" type="email" placeholder="email">
+
                             <span class="icon is-small is-left">
                                 <i class="fas fa-envelope"></i>
                             </span>
@@ -37,25 +38,39 @@
                         </p>
                     </div>
                     <div class="field">
-                        <p class="control has-icons-left">
-                            <input v-model="credential.password" class="input" type="password" placeholder="password">
+                        <div class="control has-icons-left has-icons-right">
+                            <input v-model="credential.password" class="input" :type="passwordType" placeholder="password">
+
                             <span class="icon is-small is-left">
                                 <i class="fa-solid fa-keyboard"></i>
                             </span>
-                        </p>
+                            <span class="icon is-small is-right">
+                    
+                                    <img id="" :src="showpassword ? '/show.png' : '/hide.png'"
+                                    style="width: 30px; height: 30px; margin-right: 5px;">
+
+                            </span>
+                        </div>
+                        <img src="" alt="">
                     </div>
+                    <input type="checkbox" v-model="showpassword"> ShowPassword
+                    <div>
+                        <!-- {{ showpassword ? credential.password : '******' }} -->
+                    </div>
+
                     <div class="field is-grouped is-grouped-right">
                         <div class="control">
 
                             <button class="button is-success">
-                                <!-- {{ formtitle }} -->
-                                <!-- <span class="icon is-small">
-                                </span> -->
+                               
                                 <span v-if="!register" style="width: 30px; height:30px; margin-right:5px;"><img
                                         src="../../public/login-logo.png"></span>
 
                                 <span v-if="register" style="width: 30px; height:30px; margin-right:5px;"><img
                                         src="../../public/register-logo.png"></span>
+
+                                
+
 
 
                                 <span> {{ formtitle }} </span>
@@ -73,8 +88,6 @@
 <script setup>
 import { computed, reactive, ref } from 'vue'
 import { useStoreAuth } from '../stores/storeAuth'
-
-
 
 
 const useAuth = useStoreAuth()
@@ -114,6 +127,18 @@ const credential = reactive({
     email: '',
     password: ''
 })
+// const showpassword = ref(true)
+// const passwordType = computed(()=>{
+//     showpassword.value ? 'text' : 'password'
+// })
+
+const showpassword = ref(false);
+
+
+const passwordType = computed(() =>
+    showpassword.value ? 'text' : 'password')
+
+
 </script>
 
 <style scoped>
