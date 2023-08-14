@@ -1,7 +1,7 @@
 <template>
     <div class="card mt-4">
         <div class="card-content">
-            <div class="content">
+            <div class="content" :class="{ 'content-open': isContentOpen }">
                 {{ note.content }}
                 <div class="columns is-mobile has-text-warning-dark mt-2">
                    
@@ -123,5 +123,10 @@ const HandelDelete = () => {
 <style scoped>
 * {
     /* border: 1px red solid; */
+}
+
+.content {
+  width: 100%;
+  word-break: break-all;
 }
 </style>

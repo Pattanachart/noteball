@@ -14,7 +14,7 @@
 }
 
 #footer {
-    position: static;
+   /* position: absolute; */
     left: 0;
     bottom: 0;
     width: 100%;
@@ -27,7 +27,14 @@
 h1 {
     font-size: 20px;
     padding: 5px;
-    margin: 50px 0px;
+    margin: 5px 0px;
     color: rgb(137, 150, 150)
+}
+
+@media screen and (max-height: 680px) {
+   .footer{
+    width: 100%;
+    display: none;
+  }
 }
 </style>

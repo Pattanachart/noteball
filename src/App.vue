@@ -9,9 +9,8 @@
   <div class="container is-max-desktop px-4 py-2">
     <router-view></router-view>
   </div>
-
-  <footerVue/>
-
+  
+  <footerVue :style="storeAuth.user.id ? 'position: static' : 'position: fixed'" />
 
 </template>
 
@@ -21,10 +20,13 @@ import NavBarONClickoutside from "./components/Layout/NavBarONClickoutside.vue";
 import { useStoreAuth } from '../src/stores/storeAuth'
 import footerVue from "./views/footer.vue";
 
+
 const storeAuth = useStoreAuth()
 storeAuth.init()
 
 </script>
 <style scoped>
-
+.footer {
+  /* position: relative */
+}
 </style>

@@ -26,30 +26,27 @@
                         </router-link> -->
                         <a v-if="useAuth.user.email" @click="Home" class="has-text-light" active-class="is-active">Notes</a>
                     </div><br>
-                    <div class="navbar-item">
+                    <div class="navbar-item Navlogin">
                         <!-- <router-link v-if="useAuth.user.email" to="/stats" class="navbar-item border"
                             active-class="is-active">
                             Stats
                         </router-link> -->
                         <a v-if="useAuth.user.email" @click="Stats" class="has-text-light" active-class="is-active">
                             Stats</a>
-
-
                         <!-- <router-link v-else to="/auth" active-class="is-active">
                             <span class="icon is-small">
                                 <i class="fa-solid fa-user"></i>
                             </span>
                             <span class="LOGIN">Login</span>
                         </router-link> -->
-                        <a v-else @click="auth" active-class="is-active"><span class="icon is-small AA">
+                        <a v-else @click="auth" active-class="is-active"><span class="icon is-small AA ">
                                 <i class="fa-solid fa-user AA"></i>
                             </span>
-                            <span class="LOGIN AA">Login</span></a>
+                            <span class="LOGIN AA login">Login</span></a>
                     </div>
                 </div>
                 <!-- Nav end -->
                 <div class="navbar-end">
-
                     <!-- Logout from db-->
                     <div class="navbar-item" v-if="useAuth.user.id" @click="Logout">
                         <button class="button is-small has-background-primary m-5">Logout : {{ useAuth.user.email
@@ -109,7 +106,6 @@ const Logout = () => {
     font-family: 'Courier New', Courier, monospace;
     font-size: 40px;
 }
-
 .AA {
     color: rgb(0, 0, 0);
     font-size: 23px;
@@ -121,10 +117,9 @@ const Logout = () => {
 
 .LOGIN {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: rgb(0, 0, 0);
 }
-
 
 @media screen and (max-width: 1023px) {
     .navbar-menu {
@@ -157,6 +152,7 @@ const Logout = () => {
         position: relative;
         left: 10px;
         bottom: 20px;
+        
     }
 }
 
