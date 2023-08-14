@@ -45,8 +45,8 @@
                                 <i class="fa-solid fa-keyboard"></i>
                             </span>
                             <span class="icon is-small is-right">
-                    
-                                    <img id="" :src="showpassword ? '/show.png' : '/hide.png'"
+
+                                <img id="" :src="showpassword ? '/show.png' : '/hide.png'"
                                     style="width: 30px; height: 30px; margin-right: 5px;">
 
                             </span>
@@ -62,17 +62,9 @@
                         <div class="control">
 
                             <button class="button is-success">
-                               
-                                <span v-if="!register" style="width: 30px; height:30px; margin-right:5px;"><img
-                                        src="../../public/login-logo.png"></span>
 
-                                <span v-if="register" style="width: 30px; height:30px; margin-right:5px;"><img
-                                        src="../../public/register-logo.png"></span>
-
-                                
-
-
-
+                                <span style="width: 30px; height:30px; margin-right:5px;">
+                                    <img :src="register ? '/register-logo.png' : '/login-logo.png'"></span>
                                 <span> {{ formtitle }} </span>
                             </button>
 
