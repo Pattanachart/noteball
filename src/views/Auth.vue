@@ -44,22 +44,19 @@
                             <span class="icon is-small is-left">
                                 <i class="fa fa-key" aria-hidden="true"></i>
                             </span>
-                            <span class="icon is-small is-right">
+                            <span @click="showpassword =!showpassword" class="icons2">
+                                <i v-if="showpassword" class="fa fa-eye " aria-hidden="true"></i>
 
-                                <i v-if="showpassword" class="fa fa-eye" aria-hidden="true"></i>
-
-                                <i v-else class="fa fa-eye-slash" aria-hidden="true" ></i>
+                                <i v-else class="fa fa-eye-slash " aria-hidden="true"></i>
 
                                 <!-- <img id="img" :src="showpassword ? '/show.png' : '/hide.png'"
                                     style="width: 25px; height: 25px; margin-right: 10px;"> -->
-
                             </span>
-
                         </div>
                     </div>
-                    <div class="cbox">
+                    <!-- <div class="cbox">
                         <input type="checkbox" v-model="showpassword"> <span class="check"> Show Password</span>
-                    </div>
+                    </div> -->
 
                     <div class="field is-grouped is-grouped-right">
                         <div class="control">
@@ -131,6 +128,36 @@ const passwordType = computed(() => showpassword.value ? 'text' : 'password')
 </script>
 
 <style scoped>
+.button{
+    margin-top: .5rem;
+    padding: 0 30px;
+
+}
+.button:hover{
+    transform: scale(1);
+    animation: slide-in .1s ease-in-out .1s 0 normal backwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(2%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.icons2{
+    padding: 0;
+    margin: 0;
+    /* border: 1px red dotted; */
+    cursor: pointer;
+    color: rgb(200, 199, 199);
+    position: absolute;
+    top: 0.25rem;
+    margin-left: -2.25rem;
+    z-index: 1;
+    font-size: 22.5px;
+}
 .tabs {
     /* color: red; */
     font-size: 1.5vw;
@@ -155,8 +182,15 @@ const passwordType = computed(() => showpassword.value ? 'text' : 'password')
 #liregister {
     text-shadow: 0 2px 0 rgba(221, 210, 210, 0.8);
 }
-#img{
+
+#img {
     color: red;
+}
+.cbox{
+    position: absolute;
+    bottom: 1px;
+    right: 1rem;
+    
 }
 * {
     /* border: 1px solid red; */
@@ -168,11 +202,11 @@ const passwordType = computed(() => showpassword.value ? 'text' : 'password')
     }
 
     .check {
-        font-size: 10px; 
+        font-size: 10px;
     }
+
     .tabs {
-    /* color: red; */
-    font-size: 3vw;
-}
-}
-</style>
+        /* color: red; */
+        font-size: 3vw;
+    }
+}</style>
