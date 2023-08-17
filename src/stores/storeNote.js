@@ -39,7 +39,7 @@ export const useStoreNotes = defineStore("storeNote", {
   actions: {
     init() {
       const storeAuth = useStoreAuth();
-      console.log("login with ID: ", storeAuth.user.id);
+      // console.log("login with ID: ", storeAuth.user.id);
       notesCollectionref = collection(db, "users", storeAuth.user.id, "notes");
      
       notesCollectionQuery = query(notesCollectionref, orderBy("date", "desc"));
@@ -96,7 +96,7 @@ export const useStoreNotes = defineStore("storeNote", {
     },
     async deleteNote(itTodelete) {
       // console.log("deleteNotefromStore ID:", itTodelete);
-      // this.notes = this.notes.filter((note) => note.id !== itTodelete);
+      this.notes = this.notes.filter((note) => note.id !== itTodelete);
       // delete note from db
 
       await deleteDoc(doc(notesCollectionref, itTodelete));

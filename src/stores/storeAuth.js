@@ -7,7 +7,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { useStoreNotes } from "./storeNote";
-
+import JSConfetti from 'js-confetti'
 export const useStoreAuth = defineStore("storeAuth", {
   state: () => {
     return {
@@ -17,16 +17,17 @@ export const useStoreAuth = defineStore("storeAuth", {
   actions: {
     //init sent to App.vue เพื่อ login เข้ามา
     init() {
+      
       const storeNote = useStoreNotes()
       onAuthStateChanged(auth, (user) => {
         if (user) {
-       console.log('user login: ',user);
+      //  console.log('user login: ',user);
       this.user.id = user.uid
       this.user.email = user.email
       this.router.push('/')
       storeNote.init() //init หลังจาก login เสร็จ ไปที่ storeNote.js
         } else {
-          console.log('user logout: ',user);
+          // console.log('user logout: ',user);
           this.user = {}
           this.router.replace('/auth')
           storeNote.ClearNote()
@@ -35,17 +36,22 @@ export const useStoreAuth = defineStore("storeAuth", {
     },
     //register from Auth.vue
     registerUser(credential) {
+      const confetti = new JSConfetti()
       // console.log("register action :", credential);
       createUserWithEmailAndPassword(
         auth,
         credential.email,
         credential.password
       )
-        .then((userCredential) => {
+        .then((userCredential) => { // register สำเร็จ
           const user = userCredential.user;  
-          console.log("user:", user);
+          // console.log("user:", user);
+          function showConfetti() {
+            confetti.addConfetti()
+          }
+          showConfetti()
         })
-        .catch((error) => {
+        .catch((error) => { // register ไม่สำเร็จ
          const email = credential.email
           console.log("error.message:", error.message);
           alert(`พบผู้ใช้ ${email}แล้ว โปรดลองอีกครั้ง`)
@@ -56,15 +62,15 @@ export const useStoreAuth = defineStore("storeAuth", {
     loginUser(credential) {
       // console.log("login action", credential);
       signInWithEmailAndPassword(auth, credential.email, credential.password)
-        .then((userCredential) => {
-          // Signed in Login สำเร็จ 
+        .then((userCredential) => {// Login สำเร็จ 
+          
           const user = userCredential.user;
           // console.log(user);
           // alert('login success storeAuth')
           // credential.email = '', credential.password = ''
         })
-        .catch((error) => {
-          // Login ไม่สำเร็จ
+        .catch((error) => {  // Login ไม่สำเร็จ
+         
           console.log(error.message);
           alert('email or password is Wrong  please try again')
           credential.email = '', credential.password = ''
@@ -74,8 +80,8 @@ export const useStoreAuth = defineStore("storeAuth", {
     LogoutUser() {
       // console.log("login action :", credential);
       signOut(auth)
-        .then(() => {
-          // Sign-out successful.
+        .then(() => {// Sign-out successful.
+          
           console.log("User signed Out:");
         })
         .catch((error) => {

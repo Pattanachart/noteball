@@ -55,6 +55,7 @@ const handleMouseLeave = () => {
 </script>
 
 <style scoped>
+
 .is-size-4 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 40px;

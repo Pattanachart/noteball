@@ -53,7 +53,7 @@
         </div>
     </teleport>
     <!-- end aleart-->
-    <!-- <input type="text"> -->
+
 </template>
 <script setup>
 import { VAutofocus } from '../../VAutofocus' //ฟังชั่น AutoFocus เรียกใช้โดยคำสั่ง v-autofocus  และ autofocus แบบไม่ต้อง import can เรียกใข้ได้เลย
@@ -62,13 +62,13 @@ import { useWatchCharector } from '../use/useWatchCharecter.js'
 import Note from '../Note/Note.vue'
 import { useStoreNotes } from '../stores/storeNote'
 import AddEditNote from '../Note/AddEditNote.vue';
-
+const storeNote = useStoreNotes() //import จาก Store เพื่อใช้ฟังชั่นต่างๆใน Store
 //set time out 
 const showSuccessAlert = ref(false);//ตัวแปรแจ้งเตือน
 const alertTimeout = ref(null);
 
 const newnotes = ref() //ตัวแปรเก็บค่าสำหรับพิมพ์ลงไปใหม่ TextArea
-const storeNote = useStoreNotes() //import จาก Store เพื่อใช้ฟังชั่นต่างๆใน Store
+
 // onMounted(()=>{
 //     storeNote.init() //init this.getNote จาก storeNote 
 // })
@@ -80,7 +80,6 @@ const addNote = () => {
     showSuccessAlert.value = true
     Atfocus.value.focusTextarea()// focus ส่งไปยัง AddEditNote.vue
     aleart()
-
 }
 const aleart = () => {
     if (alertTimeout.value) {

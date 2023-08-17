@@ -4,7 +4,6 @@
             <div class="content" :class="{ 'content-open': isContentOpen }">
                 {{ note.content }}
                 <div class="columns is-mobile has-text-warning-dark mt-2">
-                   
                     <small class="column">{{ datefomat }}</small>
                     <small class="column has-text-right">{{ charecter }}</small>
                 </div>
@@ -40,9 +39,8 @@
         <template #deletebyslot>
             <button class="button is-danger" @click="storeNote.deleteNote(note.id)">Delete</button>
         </template>
-
-
     </ModalDeleteNote>
+    <!-- {{ note.id }} -->
 </template>
 <script setup>
 
@@ -53,7 +51,7 @@ import ModalDeleteNote from './ModalDelete.vue'
 
 import { formatDistanceToNow } from 'date-fns'; // นำเข้าตัวจัดการเวลาจาก date-fns
 
-
+const storeNote = useStoreNotes()
 
 const datefomat = ref('');
 const updateDate = () => {
@@ -68,6 +66,7 @@ const updateDate = () => {
   // เพิ่มคำนำหน้า "in"
   datefomat.value = `in ${relativeTime}`;
 };
+
 
 // เริ่มอัปเดตค่า datefomat ทุกวินาที
 onMounted(() => {
@@ -92,7 +91,6 @@ const modals = reactive({
 //   router.push({ path: `/editNote/${props.note.id}`}) // Use the correct path with ID
 // }
 
-const storeNote = useStoreNotes()
 const charecter = computed(() => {
     // let leange = props.note.content.length
     // const lengthCha = leange > 1 ? 'charecters' : 'charecter'

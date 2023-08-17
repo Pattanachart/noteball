@@ -33,7 +33,7 @@
                                 <i class="fas fa-envelope"></i>
                             </span>
                             <span class="icon is-small is-right">
-                                <!-- <i class="fas fa-check"></i> -->
+
                             </span>
                         </p>
                     </div>
@@ -42,20 +42,23 @@
                             <input v-model="credential.password" class="input" :type="passwordType" placeholder="password">
 
                             <span class="icon is-small is-left">
-                                <i class="fa-solid fa-keyboard"></i>
+                                <i class="fa fa-key" aria-hidden="true"></i>
                             </span>
                             <span class="icon is-small is-right">
 
-                                <img id="" :src="showpassword ? '/show.png' : '/hide.png'"
-                                    style="width: 30px; height: 30px; margin-right: 5px;">
+                                <i v-if="showpassword" class="fa fa-eye" aria-hidden="true"></i>
+
+                                <i v-else class="fa fa-eye-slash" aria-hidden="true" ></i>
+
+                                <!-- <img id="img" :src="showpassword ? '/show.png' : '/hide.png'"
+                                    style="width: 25px; height: 25px; margin-right: 10px;"> -->
 
                             </span>
+
                         </div>
-                        <img src="" alt="">
                     </div>
-                    <input type="checkbox" v-model="showpassword"> ShowPassword
-                    <div>
-                        <!-- {{ showpassword ? credential.password : '******' }} -->
+                    <div class="cbox">
+                        <input type="checkbox" v-model="showpassword"> <span class="check"> Show Password</span>
                     </div>
 
                     <div class="field is-grouped is-grouped-right">
@@ -115,25 +118,24 @@ const onSubmit = () => {
         }
     }
 }
+
 const credential = reactive({
     email: '',
     password: ''
 })
-// const showpassword = ref(true)
-// const passwordType = computed(()=>{
-//     showpassword.value ? 'text' : 'password'
-// })
-
+// โชว์ password
 const showpassword = ref(false);
-
-
-const passwordType = computed(() =>
-    showpassword.value ? 'text' : 'password')
+const passwordType = computed(() => showpassword.value ? 'text' : 'password')
 
 
 </script>
 
 <style scoped>
+.tabs {
+    /* color: red; */
+    font-size: 1.5vw;
+}
+
 .auth-form {
     max-width: 450px;
     margin: 0 auto;
@@ -153,8 +155,24 @@ const passwordType = computed(() =>
 #liregister {
     text-shadow: 0 2px 0 rgba(221, 210, 210, 0.8);
 }
-
+#img{
+    color: red;
+}
 * {
     /* border: 1px solid red; */
+}
+
+@media (max-width:768px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .check {
+        font-size: 10px; 
+    }
+    .tabs {
+    /* color: red; */
+    font-size: 3vw;
+}
 }
 </style>
