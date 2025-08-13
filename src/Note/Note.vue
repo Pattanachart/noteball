@@ -4,7 +4,7 @@
             <div class="content" :class="{ 'content-open': isContentOpen }">
                 {{ note.content }}
                 <div class="columns is-mobile has-text-warning-dark mt-2">
-                    <small class="column">{{ datefomat }}</small>
+                    <small class="column">{{ datefomat }} ({{ userTimeZone }})</small>
                     <small class="column has-text-right">{{ charecter }}</small>
                 </div>
             </div>
@@ -50,8 +50,10 @@ import ModalDeleteNote from './ModalDelete.vue'
 // import { useDateFormat } from '@vueuse/core'
 
 import { formatDistanceToNow } from 'date-fns'; // นำเข้าตัวจัดการเวลาจาก date-fns
+import { timeZone } from '../use/timeZone'
 
 const storeNote = useStoreNotes()
+const userTimeZone = timeZone()
 
 const datefomat = ref('');
 const updateDate = () => {
